@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class SpriteSample extends AbstractScreen {
+public class SpriteScreen extends AbstractScreen {
   private static final float SCENE_WIDTH = 1280f;
   private static final float SCENE_HEIGHT = 720f;
 
