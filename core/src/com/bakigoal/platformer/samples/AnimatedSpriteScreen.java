@@ -22,7 +22,7 @@ public class AnimatedSpriteScreen extends AbstractScreen {
   private static final float WORLD_TO_SCREEN = 1.0f / 100.0f;
   private static final float SCENE_WIDTH = 12.80f;
   private static final float SCENE_HEIGHT = 7.20f;
-  private static final float FRAME_DURATION = 1.0f / 30.0f;
+  private static final float FRAME_DURATION = 1.0f / 40.0f;
 
   private OrthographicCamera camera;
   private Viewport viewport;
