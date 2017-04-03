@@ -17,6 +17,8 @@ public class SpriteBatchScreen extends ScreenAdapter {
   private static final float SCENE_WIDTH = 12.80f;
   private static final float SCENE_HEIGHT = 7.20f;
 
+  private Color oldColor;
+
   /**
    * The	 camera 	member	will	help	us	define	what	portion	of	the	world	will	be	seen	on	the screen
    */
@@ -34,7 +36,6 @@ public class SpriteBatchScreen extends ScreenAdapter {
    * we	will	use	 cavemanTexture 	to	hold	the	image	data	of	our little	caveman
    */
   private Texture cavemanTexture;
-  private Color oldColor;
 
   @Override
   public void show() {
