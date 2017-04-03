@@ -2,7 +2,6 @@ package com.bakigoal.platformer.samples;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class TextureAtlasScreen extends ScreenAdapter {
+public class TextureAtlasScreen extends AbstractScreen {
 
   private static final float WORLD_TO_SCREEN = 1.0f / 100.0f;
   private static final float SCENE_WIDTH = 12.80f;
