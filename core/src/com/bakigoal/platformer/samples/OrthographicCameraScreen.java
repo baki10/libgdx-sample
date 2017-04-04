@@ -3,13 +3,16 @@ package com.bakigoal.platformer.samples;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -24,9 +27,14 @@ public class OrthographicCameraScreen extends AbstractScreen {
   private static final float CAMERA_ZOOM_MAX = 1.0f;
   private static final float CAMERA_ZOOM_MIN = 0.01f;
   private static final float CAMERA_MOVE_EDGE = 0.2f;
+  private static final float VIRTUAL_WIDTH = SCENE_WIDTH * 100;
+  private static final float VIRTUAL_HEIGHT = SCENE_HEIGHT * 100;
 
   private OrthographicCamera camera;
+  private OrthographicCamera cameraHUD;
   private Viewport viewport;
+  private Viewport viewportHUD;
+  private BitmapFont font;
   private SpriteBatch batch;
   private Texture levelTexture;
   private Vector3 touch;
@@ -35,6 +43,10 @@ public class OrthographicCameraScreen extends AbstractScreen {
   public void show() {
     camera = new OrthographicCamera();
     viewport = new FitViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
+    cameraHUD = new OrthographicCamera();
+    viewportHUD = new FillViewport(VIRTUAL_WIDTH,	VIRTUAL_HEIGHT, cameraHUD);
+    font = new BitmapFont();
+    font.setColor(Color.RED);
     batch = new SpriteBatch();
     touch = new Vector3();
 
@@ -54,6 +66,7 @@ public class OrthographicCameraScreen extends AbstractScreen {
   @Override
   public void resize(int width, int height) {
     viewport.update(width, height);
+    viewportHUD.update(width, height);
   }
 
   @Override
@@ -62,12 +75,17 @@ public class OrthographicCameraScreen extends AbstractScreen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
     updateCamera(deltaTime);
-
     batch.setProjectionMatrix(camera.combined);
-
     // Render the jungle level bottom left corner at (0, 0)
     batch.begin();
     renderWorld(batch);
+    batch.end();
+
+    //	Render	UI	elements
+    cameraHUD.update();
+    batch.setProjectionMatrix(cameraHUD.combined);
+    batch.begin();
+    renderHUD(batch);
     batch.end();
   }
 
@@ -142,6 +160,10 @@ public class OrthographicCameraScreen extends AbstractScreen {
         0, 0,
         levelTexture.getWidth(), levelTexture.getHeight(),
         false, false);
+  }
+
+  private void renderHUD(SpriteBatch batch) {
+    font.draw(batch, "SCORE: 0", -400, 300);
   }
 }
 
