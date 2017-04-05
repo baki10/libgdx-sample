@@ -3,6 +3,7 @@ package com.bakigoal.platformer;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.bakigoal.platformer.samples.AnimatedSpriteScreen;
+import com.bakigoal.platformer.samples.FrameBufferParticleEffectScreen;
 import com.bakigoal.platformer.samples.FrameBufferScreen;
 import com.bakigoal.platformer.samples.OrthographicCameraScreen;
 import com.bakigoal.platformer.samples.ParticleEffectsScreen;
@@ -18,7 +19,7 @@ public class MyGdxGame extends Game {
   @Override
   public void create() {
 //    setScreen(new MenuScreen());
-    setScreen(SampleScreens.FRAME_BUFFER);
+    setScreen(SampleScreens.FRAME_BUFFER_PARTICLE);
   }
 
   private void setScreen(SampleScreens screen) {
@@ -35,7 +36,8 @@ public class MyGdxGame extends Game {
     VIEWPORT(new ViewportScreen()),
     PARTICLE_EFFECT(new ParticleEffectsScreen()),
     POOLED_EFFECT(new PooledEffectsScreen()),
-    FRAME_BUFFER(new FrameBufferScreen());
+    FRAME_BUFFER(new FrameBufferScreen()),
+    FRAME_BUFFER_PARTICLE(new FrameBufferParticleEffectScreen());
 
     private final Screen screen;
 
